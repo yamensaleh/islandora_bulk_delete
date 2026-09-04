@@ -13,7 +13,7 @@ final class BulkDeleteManager {
   public function __construct(private readonly Connection $database, private readonly QueueFactory $queues, private readonly TimeInterface $time, private readonly AccountProxyInterface $user, private readonly EntityTypeManagerInterface $entityTypes, private readonly LoggerInterface $logger) {}
 
   public function queryIds(array $f): iterable {
-    $q = $this->database->select('node', 'n')->fields('n', ['nid'])->orderBy('n.nid');
+    $q = $this->database->select('node_field_data', 'n')->fields('n', ['nid'])->distinct()->orderBy('n.nid');
     if (($f['status'] ?? '') !== '') $q->condition('n.status', (int) $f['status']);
     if (!empty($f['type'])) $q->condition('n.type', $f['type']);
     if (!empty($f['created_from'])) $q->condition('n.created', strtotime($f['created_from']), '>=');
