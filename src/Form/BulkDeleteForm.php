@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace Drupal\islandora_bulk_delete\Form;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Form\FormState;
 use Drupal\Core\Url;
 use Drupal\islandora_bulk_delete\Service\BulkDeleteManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -13,8 +12,7 @@ final class BulkDeleteForm extends ConfirmFormBase {
   public function getFormId(): string { return 'islandora_bulk_delete_form'; }
   public function getQuestion() { return $this->t('Start destructive deletion of all matching records?'); }
   public function getCancelUrl(): Url { return Url::fromRoute('system.admin_content'); }
-  public function buildForm(array $form, ?FormStateInterface $state = NULL): array {
-    $state ??= new FormState();
+  public function buildForm(array $form, FormStateInterface $state): array {
     $form['status'] = ['#type'=>'select','#title'=>$this->t('Publication status'),'#options'=>[''=>$this->t('- Any -'),'1'=>$this->t('Published'),'0'=>$this->t('Unpublished')]];
     $form['type'] = ['#type'=>'textfield','#title'=>$this->t('Content type machine name')];
     $form['collection'] = ['#type'=>'entity_autocomplete','#title'=>$this->t('Collection node'),'#target_type'=>'node'];
