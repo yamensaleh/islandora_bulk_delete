@@ -1,0 +1,7 @@
+name: Islandora Bulk Delete
+type: module
+description: 'Queue-backed, filtered deletion of repository nodes.'
+package: Islandora
+core_version_requirement: '^10 || ^11'
+dependencies:
+  - drupal:node

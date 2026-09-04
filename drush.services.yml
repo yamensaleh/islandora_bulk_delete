@@ -1,0 +1,5 @@
+services:
+  islandora_bulk_delete.commands:
+    class: Drupal\islandora_bulk_delete\Commands\BulkDeleteCommands
+    arguments: ['@islandora_bulk_delete.manager']
+    tags: [{ name: drush.command }]

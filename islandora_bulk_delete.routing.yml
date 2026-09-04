@@ -1,0 +1,22 @@
+islandora_bulk_delete.form:
+  path: '/admin/islandora/bulk-delete'
+  defaults:
+    _form: '\Drupal\islandora_bulk_delete\Form\BulkDeleteForm'
+    _title: 'Bulk delete repository records'
+  requirements:
+    _permission: 'administer islandora bulk deletion'
+islandora_bulk_delete.job:
+  path: '/admin/islandora/bulk-delete/job/{job_id}'
+  defaults:
+    _controller: '\Drupal\islandora_bulk_delete\Controller\BulkDeleteController::job'
+    _title: 'Bulk deletion progress'
+  requirements:
+    _permission: 'administer islandora bulk deletion'
+    job_id: '\d+'
+islandora_bulk_delete.csv:
+  path: '/admin/islandora/bulk-delete/job/{job_id}/failures.csv'
+  defaults:
+    _controller: '\Drupal\islandora_bulk_delete\Controller\BulkDeleteController::csv'
+  requirements:
+    _permission: 'administer islandora bulk deletion'
+    job_id: '\d+'

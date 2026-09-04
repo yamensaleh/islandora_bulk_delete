@@ -1,0 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+/** Implements hook_cron(). */
+function islandora_bulk_delete_cron(): void {
+  // Queue processing is handled by Drupal cron's Queue API integration.
+}

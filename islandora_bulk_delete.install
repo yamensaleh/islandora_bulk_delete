@@ -1,0 +1,25 @@
+<?php
+
+declare(strict_types=1);
+
+/** Implements hook_schema(). */
+function islandora_bulk_delete_schema(): array {
+  return [
+    'islandora_bulk_delete_job' => [
+      'description' => 'Bulk deletion jobs.',
+      'fields' => [
+        'id' => ['type' => 'serial', 'not null' => TRUE], 'uid' => ['type' => 'int', 'not null' => TRUE],
+        'filters' => ['type' => 'blob', 'not null' => TRUE], 'total' => ['type' => 'int', 'not null' => TRUE, 'default' => 0],
+        'queued' => ['type' => 'int', 'not null' => TRUE, 'default' => 0], 'deleted' => ['type' => 'int', 'not null' => TRUE, 'default' => 0],
+        'failed' => ['type' => 'int', 'not null' => TRUE, 'default' => 0], 'pending' => ['type' => 'int', 'not null' => TRUE, 'default' => 0],
+        'status' => ['type' => 'varchar', 'length' => 32, 'not null' => TRUE, 'default' => 'queued'],
+        'started' => ['type' => 'int', 'not null' => TRUE], 'finished' => ['type' => 'int', 'not null' => FALSE, 'default' => 0],
+      ],
+      'primary key' => ['id'], 'indexes' => ['status' => ['status']],
+    ],
+    'islandora_bulk_delete_failure' => [
+      'fields' => ['id' => ['type' => 'serial', 'not null' => TRUE], 'job_id' => ['type' => 'int', 'not null' => TRUE], 'nid' => ['type' => 'int', 'not null' => TRUE], 'uuid' => ['type' => 'varchar', 'length' => 128, 'not null' => FALSE], 'title' => ['type' => 'varchar', 'length' => 512, 'not null' => FALSE], 'message' => ['type' => 'text', 'not null' => TRUE], 'created' => ['type' => 'int', 'not null' => TRUE]],
+      'primary key' => ['id'], 'indexes' => ['job' => ['job_id']],
+    ],
+  ];
+}

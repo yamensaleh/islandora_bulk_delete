@@ -1,0 +1,3 @@
+administer islandora bulk deletion:
+  title: 'Administer Islandora bulk deletion'
+  restrict access: true

@@ -1,0 +1,7 @@
+services:
+  islandora_bulk_delete.manager:
+    class: Drupal\islandora_bulk_delete\Service\BulkDeleteManager
+    arguments: ['@database', '@queue', '@datetime.time', '@current_user', '@entity_type.manager', '@logger.channel.islandora_bulk_delete']
+  logger.channel.islandora_bulk_delete:
+    parent: logger.channel_base
+    arguments: ['islandora_bulk_delete']

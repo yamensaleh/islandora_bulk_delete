@@ -1,0 +1,5 @@
+islandora_bulk_delete.form:
+  title: 'Bulk delete repository records'
+  description: 'Queue filtered repository record deletion.'
+  route_name: islandora_bulk_delete.form
+  parent: system.admin_config_islandora
